@@ -7,13 +7,24 @@ import { Tracker } from 'meteor/tracker';
 const renderPlayers = (playersList) => {
   return playersList.map(player => {
     return (
-      <p key={player._id}>
-        {player.name} has {player.score} points.
-        <button className="btn btn-danger"
-        onClick={() => {
-          Players.remove({ _id: player._id });
-        }}>Delete</button>
-      </p>
+      <div key={player._id}>
+        <p>
+          {player.name} has {player.score} points.
+          <button className="btn--delete btn btn-danger"
+          onClick={() => {
+            Players.update({ _id: player._id }, { $inc: { score: 1 }});
+          }}>+1</button>
+          <button className="btn--delete btn btn-danger"
+          onClick={() => {
+            Players.update({ _id: player._id }, { $inc: { score: -1 }});
+          }}>-1</button>
+          <button className="btn--delete btn btn-danger"
+          onClick={() => {
+            Players.remove({ _id: player._id });
+          }}>Delete</button>
+        </p>
+        <div className="clearme"></div>
+      </div>
     );
   });
 };
