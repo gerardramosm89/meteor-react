@@ -4,50 +4,45 @@ import { Meteor } from 'meteor/meteor';
 import { Players } from './../imports/api/players';
 import { Tracker } from 'meteor/tracker';
 
-// const players = [{
-//   _id: '1',
-//   name: "Gerry",
-//   score: 99
-// },{
-//   _id: '2',
-//   name: "Chris",
-//   score: 2
-// },{
-//   _id: '3',
-//   name: "Theresa",
-//   score: 3
-// }];
-
 const renderPlayers = (playersList) => {
   return playersList.map(player => {
-    return <p key={player._id}>{player.name} has {player.score} points.</p>
+    return (
+      <p key={player._id}>
+        {player.name} has {player.score} points.
+        <button className="btn btn-danger"
+        onClick={() => {
+          Players.remove({ _id: player._id });
+        }}>Delete</button>
+      </p>
+    );
   });
 };
 
-const handleSubmit = function (e) {
+const handleSubmit = (e) => {
   let playerName = e.target.playerName.value;
   e.preventDefault();
 
   if (playerName) {
+    console.log('e.target is: ', e.target);
     e.target.playerName.value = '';
     Players.insert({ name: playerName, score: 0})
   }
 };
 
-Meteor.startup(function () {
+Meteor.startup(() => {
   // title -> Account Settings
-  Tracker.autorun(function() {
+  Tracker.autorun(() => {
     players = Players.find().fetch();
     let jsx = (
-      <div>
-        <p>
+      <div className="col-xs-6 col-xs-offset-3">
+        <h1>
           This is from main.js {name}
-        </p>
+        </h1>
         { renderPlayers(players) }
-        <form onSubmit={handleSubmit}>
+        <form className="form-group" onSubmit={handleSubmit}>
           <label>Player Name</label>
-          <input type="text" name="playerName" placeholder="Player Name" />
-          <button >Add Player</button>
+          <input className="form-control" type="text" name="playerName" placeholder="Player Name" />
+          <button className="btn btn-primary">Add Player</button>
         </form>
       </div>
     );
