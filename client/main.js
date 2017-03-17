@@ -10,11 +10,11 @@ const renderPlayers = (playersList) => {
       <div key={player._id}>
         <p>
           {player.name} has {player.score} points.
-          <button className="btn--delete btn btn-danger"
+          <button className="btn--delete btn btn-info"
           onClick={() => {
             Players.update({ _id: player._id }, { $inc: { score: 1 }});
           }}>+1</button>
-          <button className="btn--delete btn btn-danger"
+          <button className="btn--delete btn btn-info"
           onClick={() => {
             Players.update({ _id: player._id }, { $inc: { score: -1 }});
           }}>-1</button>
@@ -41,7 +41,6 @@ const handleSubmit = (e) => {
 };
 
 Meteor.startup(() => {
-  // title -> Account Settings
   Tracker.autorun(() => {
     players = Players.find().fetch();
     let jsx = (
