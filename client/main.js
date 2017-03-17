@@ -20,9 +20,18 @@ import { Tracker } from 'meteor/tracker';
 
 const renderPlayers = (playersList) => {
   return playersList.map(player => {
-    console.log(player);
     return <p key={player._id}>{player.name} has {player.score} points.</p>
   });
+};
+
+const handleSubmit = function (e) {
+  let playerName = e.target.playerName.value;
+  e.preventDefault();
+
+  if (playerName) {
+    e.target.playerName.value = '';
+    Players.insert({ name: playerName, score: 0})
+  }
 };
 
 Meteor.startup(function () {
@@ -35,14 +44,16 @@ Meteor.startup(function () {
           This is from main.js {name}
         </p>
         { renderPlayers(players) }
+        <form onSubmit={handleSubmit}>
+          <label>Player Name</label>
+          <input type="text" name="playerName" placeholder="Player Name" />
+          <button >Add Player</button>
+        </form>
       </div>
     );
     ReactDOM.render(jsx, document.getElementById('app'));
   });
-  Players.insert({
-    name: "Gerry",
-    score: 23
-  });
+
   // Insert new doc into players collection
 
 });
