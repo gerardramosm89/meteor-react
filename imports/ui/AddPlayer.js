@@ -9,15 +9,17 @@ class AddPlayer extends Component {
     if (playerName) {
       console.log('e.target is: ', e.target);
       e.target.playerName.value = '';
-      Players.insert({ name: playerName, score: 0})
+      Players.insert({ name: playerName, score: 0});
+      }
     }
-    };
     return (
-      <form className="form-group" onSubmit={handleSubmit}>
-        <label>Player Name</label>
-        <input className="form-control" type="text" name="playerName" placeholder="Player Name" />
-        <button className="btn btn-primary">Add Player</button>
-      </form>
+      <div>
+        <form className="form-group" onSubmit={handleSubmit.bind(this)}>
+          <label>Player Name</label>
+          <input className="form-control" type="text" name="playerName" placeholder="Player Name" />
+          <button className="btn btn-primary">Add Player</button>
+        </form>
+      </div>
     );
   }
 }

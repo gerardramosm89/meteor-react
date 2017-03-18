@@ -5,29 +5,11 @@ import { Players } from './../imports/api/players';
 import { Tracker } from 'meteor/tracker';
 import TitleBar from '../imports/ui/TitleBar';
 import AddPlayer from '../imports/ui/AddPlayer';
+import Player from '../imports/ui/Player';
 
 const renderPlayers = (playersList) => {
   return playersList.map(player => {
-    return (
-      <div key={player._id}>
-        <p>
-          {player.name} has {player.score} points.
-          <button className="btn--delete btn btn-info"
-          onClick={() => {
-            Players.update({ _id: player._id }, { $inc: { score: 1 }});
-          }}>+1</button>
-          <button className="btn--delete btn btn-info"
-          onClick={() => {
-            Players.update({ _id: player._id }, { $inc: { score: -1 }});
-          }}>-1</button>
-          <button className="btn--delete btn btn-danger"
-          onClick={() => {
-            Players.remove({ _id: player._id });
-          }}>Delete</button>
-        </p>
-        <div className="clearme"></div>
-      </div>
-    );
+    return <Player key={player._id} player={player} />;
   });
 };
 
