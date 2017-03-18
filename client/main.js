@@ -8,12 +8,6 @@ import AddPlayer from '../imports/ui/AddPlayer';
 import Player from '../imports/ui/Player';
 import PlayerList from '../imports/ui/PlayerList';
 
-const renderPlayers = (playersList) => {
-  return playersList.map(player => {
-    return <Player key={player._id} player={player} />;
-  });
-};
-
 Meteor.startup(() => {
   Tracker.autorun(() => {
     players = Players.find().fetch();
@@ -24,7 +18,6 @@ Meteor.startup(() => {
           This is from main.js {name}
         </h1>
         <PlayerList players={players} />
-        { renderPlayers(players) }
         <AddPlayer />
       </div>
     );
