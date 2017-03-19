@@ -7,10 +7,12 @@ import TitleBar from './TitleBar';
 export default class App extends Component {
   render() {
     return (
-      <div className="col-xs-6 col-xs-offset-3">
+      <div>
         <TitleBar title="MeteorJS" />
-        <PlayerList players={players} />
-        <AddPlayer />
+        <div className="col-xs-6 col-xs-offset-3">
+          <PlayerList players={players} />
+          <AddPlayer />
+        </div>
       </div>
     );
   }
