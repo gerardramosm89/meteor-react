@@ -1,0 +1,30 @@
+* {
+  font-family: "Lato";
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: #555555;
+  font-family: "Lato";
+  font-size:1.6rem;
+}
+
+
+h1 {
+  margin: 0;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size:3.4rem;
+}
+
+.clearme {
+  clear: both;
+}
+
+.btn--delete {
+  float: right;
+}
+
+@import './components/title-bar';
+@import './components/wrapper';
