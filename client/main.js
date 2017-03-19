@@ -7,21 +7,12 @@ import TitleBar from '../imports/ui/TitleBar';
 import AddPlayer from '../imports/ui/AddPlayer';
 import Player from '../imports/ui/Player';
 import PlayerList from '../imports/ui/PlayerList';
+import App from '../imports/ui/App';
 
 Meteor.startup(() => {
   Tracker.autorun(() => {
-    players = Players.find().fetch();
-    let jsx = (
-      <div className="col-xs-6 col-xs-offset-3">
-        <TitleBar title="MeteorJS" />
-        <h1>
-          This is from main.js {name}
-        </h1>
-        <PlayerList players={players} />
-        <AddPlayer />
-      </div>
-    );
-    ReactDOM.render(jsx, document.getElementById('app'));
+    players = Players.find({}, { sort: { score: -1 }}).fetch();
+    ReactDOM.render(<App />, document.getElementById('app'));
   });
 
   // Insert new doc into players collection

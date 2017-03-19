@@ -3,9 +3,18 @@ import Player from './Player';
 
 export default class PlayerList extends Component {
   renderPlayer(players) {
-    return players.map((player) => {
-      return <Player key={player._id} player={player} />
-    });
+
+    if (players.length === 0) {
+      return (
+        <div>
+          <h2 className="text-center">Please enter a player</h2>
+        </div>
+      );
+    } else {
+      return players.map((player) => {
+        return <Player key={player._id} player={player} />
+      });
+    }
   }
   render (){
     return(
