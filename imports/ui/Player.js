@@ -7,6 +7,9 @@ class Player extends Component {
     return (
       <div key={player._id} className="item">
         <p>
+          <p className="player__stats">
+            {this.props.player.rank} {this.props.player.position}
+          </p>
           {player.name} has {player.score} points.
           <span className="clearme"></span>          
           <button className="btn--delete btn btn-info"
