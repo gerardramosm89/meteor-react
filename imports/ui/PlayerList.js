@@ -6,7 +6,7 @@ export default class PlayerList extends Component {
 
     if (players.length === 0) {
       return (
-        <div>
+        <div className="item">
           <h2 className="text-center">Please enter a player</h2>
         </div>
       );

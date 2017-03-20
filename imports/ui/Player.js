@@ -5,9 +5,10 @@ class Player extends Component {
   render() {
     let player = this.props.player;
     return (
-      <div key={player._id}>
+      <div key={player._id} className="item">
         <p>
           {player.name} has {player.score} points.
+          <span className="clearme"></span>          
           <button className="btn--delete btn btn-info"
           onClick={() => {
             Players.update({ _id: player._id }, { $inc: { score: 1 }});

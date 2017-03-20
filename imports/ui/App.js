@@ -9,7 +9,7 @@ export default class App extends Component {
     return (
       <div>
         <TitleBar title="MeteorJS" />
-        <div className="col-xs-4 col-xs-offset-4">
+        <div className="col-xs-6 col-xs-offset-3">
           <PlayerList players={players} />
           <AddPlayer />
         </div>

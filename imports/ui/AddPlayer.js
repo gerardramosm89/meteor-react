@@ -13,7 +13,7 @@ class AddPlayer extends Component {
       }
     }
     return (
-      <div>
+      <div className="item">
         <form className="form-group" onSubmit={handleSubmit.bind(this)}>
           <label>Player Name</label>
           <input className="form-control" type="text" name="playerName" placeholder="Player Name" />
