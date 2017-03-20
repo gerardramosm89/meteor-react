@@ -14,7 +14,4 @@ Meteor.startup(() => {
     players = Players.find({}, { sort: { score: -1 }}).fetch();
     ReactDOM.render(<App />, document.getElementById('app'));
   });
-
-  // Insert new doc into players collection
-
 });

@@ -19,7 +19,7 @@ export default class PlayerList extends Component {
   render (){
     return(
       <div>
-        <h1>Player List</h1>
+        <h1 className="text-center playerlist--header">Player List</h1>
         {this.renderPlayer(this.props.players)}
       </div>
     );
