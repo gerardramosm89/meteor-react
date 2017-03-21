@@ -4,8 +4,8 @@ import { Meteor } from 'meteor/meteor';
 import { Players, calculatePlayerPositions } from './../api/players';
 
 class TitleBar extends Component {
-    super(){
-      
+    constructor(props) {
+      super(props);
     }
     render () {
       players = Players.find({}, { sort: { score: -1 }}).fetch();
