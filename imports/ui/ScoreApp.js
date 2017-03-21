@@ -3,6 +3,7 @@ import AddPlayer from './AddPlayer';
 import PlayerList from './PlayerList';
 import { Players, calculatePlayerPositions } from './../api/players';
 
+
 export default class ScoreApp extends Component {
   render() {
     players = Players.find({}, { sort: { score: -1 }}).fetch();
