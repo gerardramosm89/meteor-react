@@ -6,12 +6,10 @@ import { Players, calculatePlayerPositions } from './../api/players';
 
 export default class ScoreApp extends Component {
   render() {
-    players = Players.find({}, { sort: { score: -1 }}).fetch();
-    let positionedPlayers = calculatePlayerPositions(players);
     return (
       <div>
         <div className="col-xs-6 col-xs-offset-3">
-          <PlayerList players={positionedPlayers} />
+          <PlayerList players={this.props.players} />
           <AddPlayer />
         </div>
       </div>
