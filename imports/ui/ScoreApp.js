@@ -3,14 +3,17 @@ import AddPlayer from './AddPlayer';
 import Player from './Player';
 import PlayerList from './PlayerList';
 import TitleBar from './TitleBar';
+import { Players, calculatePlayerPositions } from './../api/players';
 
-export default class App extends Component {
+export default class ScoreApp extends Component {
   render() {
+    players = Players.find({}, { sort: { score: -1 }}).fetch();
+    let positionedPlayers = calculatePlayerPositions(players);
+    
     return (
       <div>
-        <TitleBar title="MeteorJS" />
         <div className="col-xs-6 col-xs-offset-3">
-          <PlayerList players={this.props.players} />
+          <PlayerList players={positionedPlayers} />
           <AddPlayer />
         </div>
       </div>
