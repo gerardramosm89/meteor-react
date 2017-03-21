@@ -1,8 +1,22 @@
 .item {
   background: #ffffff;
-  border: 1px solid #e8e8e8;
+  border: 2px solid #e8e8e8;
   margin-bottom: 1.3rem;
   padding: 1.3rem;
+  border-radius: 1.6rem;
+
+  &--position-1 {
+    background: #e4ede0;
+    border-color: darken(#e4ede0, 15%); 
+  }
+  &--position-2 {
+    background: aliceblue;
+    border-color: darken(aliceblue, 15%);
+  }
+  &--position-3 {
+    background: lighten(tan, 15%);
+    border-color: darken(tan, 15%);
+  }
 }
 
 .item__message {

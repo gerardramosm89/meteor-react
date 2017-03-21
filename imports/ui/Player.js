@@ -3,13 +3,15 @@ import { Players } from '../api/players';
 
 class Player extends Component {
   render() {
+    let itemClassName = `item item--position-${this.props.player.rank}`;
+
     let player = this.props.player;
     return (
-      <div key={player._id} className="item">
-        <p>
-          <p className="player__stats">
+      <div key={player._id} className={itemClassName}>
+        <div>
+          <div className="player__stats">
             {this.props.player.rank} {this.props.player.position}
-          </p>
+          </div>
           {player.name} has {player.score} points.
           <span className="clearme"></span>          
           <button className="btn--delete btn btn-info"
@@ -24,7 +26,7 @@ class Player extends Component {
           onClick={() => {
             Players.remove({ _id: player._id });
           }}>Delete</button>
-        </p>
+        </div>
         <div className="clearme"></div>
       </div>
     );
