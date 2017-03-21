@@ -6,6 +6,7 @@ import { Players, calculatePlayerPositions } from './../api/players';
 
 export default class ScoreApp extends Component {
   render() {
+    console.log("This.props.players from ScoreApp is: ", this.props.players);
     return (
       <div>
         <div className="col-xs-6 col-xs-offset-3">

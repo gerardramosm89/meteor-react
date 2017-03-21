@@ -9,18 +9,24 @@ import NotFound from '../imports/ui/shortlnk/Notfound';
 import Login from '../imports/ui/shortlnk/Login';
 import { Players, calculatePlayerPositions } from './../imports/api/players';
 
+window.browserHistory = browserHistory;
+
+const routes = (
+  <Router history={browserHistory}>
+    <Route path="/" component={Login} />          
+    <Route path="/signup" component={Signup} />
+    <Route path="/login" component={Login} />          
+    <Route path="/scorekeep" players={positionedPlayers} component={TitleBar} />
+    <Route path="*" component={NotFound} />          
+  </Router>
+);
+players = Players.find({}, { sort: { score: -1 }}).fetch();
+let positionedPlayers = calculatePlayerPositions(players);
 Meteor.startup(() => {
   Tracker.autorun(() => {
-      players = Players.find({}, { sort: { score: -1 }}).fetch();
+      let players = Players.find({}, { sort: { score: -1 }}).fetch();
       let positionedPlayers = calculatePlayerPositions(players);
-      const routes = (
-        <Router history={browserHistory}>
-          <Route path="/" component={Login} />          
-          <Route path="/signup" component={Signup} />
-          <Route path="/scorekeep" players={positionedPlayers} component={TitleBar} />
-          <Route path="*" component={NotFound} />          
-        </Router>
-      );
-    ReactDOM.render(routes, document.getElementById('app'));
+      console.log("length of positionedPlayers is: ", positionedPlayers.length);
+       ReactDOM.render(routes, document.getElementById('app'));
   });
 });

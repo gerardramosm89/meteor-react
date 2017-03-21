@@ -6,10 +6,11 @@ import { Router, Route, browserHistory } from 'react-router';
 class TitleBar extends Component {
     constructor(props) {
       super(props);
+      console.log("Props from TitleBar constructor", props.route.player);
     }
     render () {
-      players = Players.find({}, { sort: { score: -1 }}).fetch();
-      let positionedPlayers = calculatePlayerPositions(players);
+      //let players = this.props.route.players;
+      console.log("Players from TitleBar render(): ", this.props.players);
       return (
         <div className="title-bar">
           <h1>MeteorJS</h1>
@@ -17,15 +18,6 @@ class TitleBar extends Component {
         </div>
       );
     }
-
-  /*render () {
-    return (
-      <div className="title-bar">
-        <h1>MeteorJS</h1>
-        <ScoreApp />
-      </div>
-    );
-  }*/
 }
 
 export default TitleBar;
