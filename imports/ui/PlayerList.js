@@ -4,7 +4,9 @@ import FlipMove from 'react-flip-move';
 
 export default class PlayerList extends Component {
   renderPlayer(players) {
-
+    if (!players) {
+      return <div>Loading</div>
+    }
     if (players.length === 0) {
       return (
         <div className="item">
