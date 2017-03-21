@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import AddPlayer from './AddPlayer';
-import Player from './Player';
 import PlayerList from './PlayerList';
-import TitleBar from './TitleBar';
 import { Players, calculatePlayerPositions } from './../api/players';
 
 export default class ScoreApp extends Component {
   render() {
     players = Players.find({}, { sort: { score: -1 }}).fetch();
     let positionedPlayers = calculatePlayerPositions(players);
-    
     return (
       <div>
         <div className="col-xs-6 col-xs-offset-3">
