@@ -5,6 +5,18 @@ import { Players, calculatePlayerPositions } from './../api/players';
 
 
 export default class ScoreApp extends Component {
+  componentWillMount() {
+    console.log("componentWillMount");
+    this.players = Players.find({}, { sort: { score: -1 }}).fetch();
+    console.log(this.players);
+  }
+  componentDidMount() {
+    console.log("componentDidMount");
+    setTimeout(function(){
+      console.log("timeout");
+      console.log(this.players);
+    }, 1000);
+  }
   render() {
     console.log("This.props.players from ScoreApp is: ", this.props.players);
     return (

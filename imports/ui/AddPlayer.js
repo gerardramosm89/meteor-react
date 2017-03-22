@@ -5,7 +5,6 @@ class AddPlayer extends Component {
     const handleSubmit = (e) => {
     let playerName = e.target.playerName.value;
     e.preventDefault();
-
     if (playerName) {
       console.log('e.target is: ', e.target);
       e.target.playerName.value = '';

@@ -6,7 +6,6 @@ import { Router, Route, browserHistory } from 'react-router';
 class TitleBar extends Component {
     constructor(props) {
       super(props);
-      console.log("Props from TitleBar constructor", props.route.player);
     }
     render () {
       //let players = this.props.route.players;

@@ -28,7 +28,7 @@ export default class Signup extends React.Component {
       <div>
         <div className="col-xs-6 col-xs-offset-3">
           <h1>Signup Component</h1>
-          <form onSubmit={this.onSubmit.bind(this)}>
+          <form onSubmit={this.onSubmit.bind(this)} noValidate>
             {this.state.error ? <div className="alert alert-danger">{this.state.error}</div> : undefined}
             <div className="form-group">
               <label>Email Address:</label>
