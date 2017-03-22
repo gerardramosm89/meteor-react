@@ -16,15 +16,20 @@ export default class Login extends React.Component {
 
     Meteor.loginWithPassword({ email }, password, (err) => {
       console.log('Login callback', err);
+      if (err) {
+        this.setState({ error: err.reason });
+      } else {
+        this.setState({ error: '' });
+      }
     });
   }
   render() {
     return (
       <div>
         <h1>Login to Short Lnk</h1>
-        {this.state.error ? <p>{this.state.error}</p> : undefined}
         <div className="col-xs-6 col-xs-offset-3">
           <h1 className="text-center">Login Component</h1>
+        {this.state.error ? <div className="alert alert-danger">{this.state.error}</div> : undefined}          
           <form onSubmit={this.onSubmit.bind(this)}>
             <div className="form-group">
               <input className="form-control" ref="email" type="text" name="email" placeholder="Email" />
@@ -34,7 +39,7 @@ export default class Login extends React.Component {
             </div>
             <button className="btn btn-primary btn-lg text-center">Login</button>
           </form>
-          <Link to="/signup">Have an account?</Link>
+          <Link to="/signup">Sign Up</Link>
         </div>
       </div>
     );
