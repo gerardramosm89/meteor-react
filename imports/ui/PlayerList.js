@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import Player from './Player';
 import FlipMove from 'react-flip-move';
-
+import { Players, calculatePlayerPositions } from '../api/players';
 export default class PlayerList extends Component {
+
+  componentDidMount() {
+    Tracker.autorun(() => {
+      let players = Players.find({}, { sort: { score: -1 }}).fetch();
+      let positionedPlayers = calculatePlayerPositions(players);
+      console.log("positionedplayers from PlayerList", positionedPlayers.length);
+    });
+  }
   renderPlayer(players) {
     if (!players) {
       return <div>Loading</div>

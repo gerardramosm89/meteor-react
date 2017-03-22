@@ -10,7 +10,7 @@ import Login from '../imports/ui/shortlnk/Login';
 import { Players, calculatePlayerPositions } from './../imports/api/players';
 import Link from '../imports/ui/shortlnk/Link';
 import { routes, onAuthChange } from '../imports/routes/routes';
-
+import { Links } from '../imports/api/links';
 
 Tracker.autorun(() => {
   const isAuthenticated = !!Meteor.userId();
@@ -18,10 +18,5 @@ Tracker.autorun(() => {
 });
 
 Meteor.startup(() => {
-  Tracker.autorun(() => {
-      let players = Players.find({}, { sort: { score: -1 }}).fetch();
-      let positionedPlayers = calculatePlayerPositions(players);
-      console.log("length of positionedPlayers is: ", positionedPlayers.length);
        ReactDOM.render(routes, document.getElementById('app'));
-  });
 });

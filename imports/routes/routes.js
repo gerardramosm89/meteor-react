@@ -36,16 +36,13 @@ export const onAuthChange = (isAuthenticated) => {
   }
 };
 
-players = Players.find({}, { sort: { score: -1 }}).fetch();
-let positionedPlayers = calculatePlayerPositions(players);
-
 export const routes = (
   <Router history={browserHistory}>
     <Route path="/" component={Login} />          
     <Route path="/signup" component={Signup} onEnter={onEnterPublicPage}/>
     <Route path="/login" component={Login} onEnter={onEnterPublicPage}/>
     <Route path="/links" component={Link} onEnter={onEnterPrivatePage}/>         
-    <Route path="/scorekeep" players={positionedPlayers} component={TitleBar} />
+    <Route path="/scorekeep" component={TitleBar} />
     <Route path="*" component={NotFound} />          
   </Router>
 );
