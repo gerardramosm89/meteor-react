@@ -9,9 +9,11 @@ export default class Link extends React.Component {
   render() {
     return (
       <div>
-        Link Component
-        <h1>Your Links</h1>
-        <button className="btn btn-primary" onClick={this.onLogout.bind(this)}>Logout</button>
+        <div className="col-xs-6 col-xs-offset-3">
+          <h1>Protected Resources!</h1>
+          <h3>You are currently logged in</h3>
+          <button className="btn btn-primary" onClick={this.onLogout.bind(this)}>Logout</button>
+        </div>
       </div>
     );
   }

@@ -26,7 +26,6 @@ export default class Login extends React.Component {
   render() {
     return (
       <div>
-        <h1>Login to Short Lnk</h1>
         <div className="col-xs-6 col-xs-offset-3">
           <h1 className="text-center">Login Component</h1>
         {this.state.error ? <div className="alert alert-danger">{this.state.error}</div> : undefined}          
