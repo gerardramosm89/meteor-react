@@ -4,8 +4,7 @@ import { Mongo } from 'meteor/mongo';
 export const Links = new Mongo.Collection('links');
 
 if (Meteor.isServer) {
-  console.log("publishing from links");
-  Meteor.publish('links', () => {
-    return Links.find({ url: "test" });
+  Meteor.publish('links', function () {
+    return Links.find({ userId: this.userId });
   });
 }
