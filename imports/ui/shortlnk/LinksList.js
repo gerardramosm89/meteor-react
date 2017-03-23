@@ -12,17 +12,14 @@ export default class LinksList extends React.Component {
     };
   }
   componentDidMount() {
-    console.log("Component did mount links list");
     this.linksTracker = Tracker.autorun(() => {
       Meteor.subscribe('links');
       const links = Links.find().fetch();
-      console.log("links from LinksList", links);
       this.setState({ links });
     });
   }
 
   componentWillUnmount() {
-    console.log("Component will unmount links list");
     this.linksTracker.stop();
   }
 

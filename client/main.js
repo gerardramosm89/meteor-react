@@ -11,6 +11,7 @@ import { Players, calculatePlayerPositions } from './../imports/api/players';
 import Link from '../imports/ui/shortlnk/Link';
 import { routes, onAuthChange } from '../imports/routes/routes';
 import { Links } from '../imports/api/links';
+import '../imports/startup/simple-schema-configuration';
 
 Tracker.autorun(() => {
   const isAuthenticated = !!Meteor.userId();

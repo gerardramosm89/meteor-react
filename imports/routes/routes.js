@@ -25,8 +25,7 @@ const onEnterPrivatePage = () => {
 export const onAuthChange = (isAuthenticated) => {
   const pathname = browserHistory.getCurrentLocation().pathname;
   const isUnauthenticatedPage = unauthenticatedPages.includes(pathname);
-  const isAuthenticatedPage = authenticatedPages.includes(pathname);  
-  console.log('isAuthenticated', isAuthenticated);
+  const isAuthenticatedPage = authenticatedPages.includes(pathname);
 
   if (isAuthenticatedPage && !isAuthenticated) {
     console.log("log in");
