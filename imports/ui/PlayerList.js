@@ -3,7 +3,6 @@ import Player from './Player';
 import FlipMove from 'react-flip-move';
 import { Players, calculatePlayerPositions } from '../api/players';
 
-
 export default class PlayerList extends Component {
   constructor(props) {
     super(props);
