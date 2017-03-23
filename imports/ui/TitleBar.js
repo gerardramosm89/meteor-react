@@ -8,12 +8,10 @@ class TitleBar extends Component {
       super(props);
     }
     render () {
-      //let players = this.props.route.players;
-      console.log("Players from TitleBar render(): ", this.props.players);
       return (
         <div className="title-bar">
           <h1>MeteorJS</h1>
-          <ScoreApp players={this.props.players}/>
+          <ScoreApp />
         </div>
       );
     }
