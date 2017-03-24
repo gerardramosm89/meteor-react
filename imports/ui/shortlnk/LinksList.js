@@ -25,14 +25,14 @@ export default class LinksList extends React.Component {
 
   renderLinksListItems() {   
     return this.state.links.map(link => {
-      return <div key={link._id}>{link.url}</div>
+      return <div className="url-list--item" key={link._id}>{link.url}</div>
     });
   }
   render() {
     return(
       <div>
-        <h2>Links List</h2>
-        <div>
+        <h2 className="links-list--header">Links List</h2>
+        <div className="url-list">
           {this.renderLinksListItems()}
         </div>
       </div>
