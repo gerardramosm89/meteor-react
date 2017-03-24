@@ -1,8 +1,10 @@
 .title-bar {
   background: #e35557;
   color: white;
+  position: relative;
   h1 {
     padding-left: 20px;
     margin-top: 0;
+    display: inline-block;
   }
 }
