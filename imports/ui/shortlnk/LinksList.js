@@ -2,8 +2,8 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
 import { Links } from '../../api/links';
+import { Session } from 'meteor/session';
 import LinksListItem from './LinksListItem';
-
 export default class LinksList extends React.Component {
   constructor(props) {
     super(props);
@@ -14,7 +14,9 @@ export default class LinksList extends React.Component {
   componentDidMount() {
     this.linksTracker = Tracker.autorun(() => {
       Meteor.subscribe('links');
-      const links = Links.find().fetch();
+      const links = Links.find({
+        visible: Session.get('showVisible')
+      }).fetch();
       this.setState({ links });
     });
   }
@@ -30,11 +32,19 @@ export default class LinksList extends React.Component {
       // return <div className="url-list--item" key={link._id}>{link.url}</div>
     });
   }
+
+  checked(e) {
+    Session.set('showVisible', !e.target.checked);
+  }
   render() {
     return(
       <div>
         <h2 className="links-list--header">Links List</h2>
         <div className="url-list">
+          <label>
+          <input type="checkbox" onChange={this.checked}/>
+          show hidden links
+          </label>
           {this.renderLinksListItems()}
         </div>
       </div>

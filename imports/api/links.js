@@ -16,7 +16,6 @@ Meteor.methods({
       throw new Meteor.Error('not authorized');
     }
 
-
     new SimpleSchema({
       url: {
         type: String,

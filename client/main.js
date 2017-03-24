@@ -18,6 +18,8 @@ Tracker.autorun(() => {
   onAuthChange(isAuthenticated);
 });
 
+
 Meteor.startup(() => {
-       ReactDOM.render(routes, document.getElementById('app'));
+  Session.set('showVisible', true);    
+  ReactDOM.render(routes, document.getElementById('app'));
 });
