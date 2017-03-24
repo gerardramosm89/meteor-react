@@ -20,7 +20,7 @@ Meteor.methods({
       url: {
         type: String,
         label: "Your garbage",
-        regEx: SimpleSchema.RegEx.Url
+        //regEx: SimpleSchema.RegEx.Url
       }
     }).validate({ url });
 
