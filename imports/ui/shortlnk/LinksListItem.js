@@ -1,5 +1,6 @@
 import React from 'react';
 import Clipboard from 'clipboard';
+import { Meteor } from 'meteor/meteor';
 
 export default class LinksListItem extends React.Component {
   constructor(props) {
@@ -31,8 +32,13 @@ export default class LinksListItem extends React.Component {
     if (this.state.justCopied === true){ 
       return <div>Copied</div>
     } else {
-      return <div>copy</div>
+      return <div>Copy</div>
     }
+  }
+  setVisibility() {
+    console.log("setting visibility");
+    console.log(this.props._id);
+    Meteor.call('links.setVisibility', this.props._id, !this.props.visible);
   }
   render() {
     let { props } = this;
@@ -42,8 +48,10 @@ export default class LinksListItem extends React.Component {
           {props.url}
         </div>
         <div>
+          <p>VisibilitY: {props.visible.toString()}</p>
           <p className="url-list--shortlink">Short Link is: {props.shortUrl}</p>
-          <button ref="copy" data-clipboard-text={props.shortUrl}>{this.renderCopied()}</button>
+          <button className="btn btn-default" ref="copy" data-clipboard-text={props.shortUrl}>{this.renderCopied()}</button>
+          <button onClick={this.setVisibility.bind(this)} className="btn btn-default">{props.visible ? 'Hide': 'Unhide' }</button>
         </div>
 
       </div>
