@@ -8,7 +8,8 @@ export default class LinksList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      links: []
+      links: [],
+      showVisible: true
     };
   }
   componentDidMount() {
@@ -18,6 +19,8 @@ export default class LinksList extends React.Component {
         visible: Session.get('showVisible')
       }).fetch();
       this.setState({ links });
+      const showVisible = Session.get('showVisible');
+      this.setState({ showVisible })
     });
   }
 
@@ -42,7 +45,7 @@ export default class LinksList extends React.Component {
         <h2 className="links-list--header">Links List</h2>
         <div className="url-list">
           <label>
-          <input type="checkbox" onChange={this.checked}/>
+          <input type="checkbox" checked={!this.state.showVisible} onChange={this.checked}/>
           show hidden links
           </label>
           {this.renderLinksListItems()}
