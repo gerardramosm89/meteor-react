@@ -1,10 +1,17 @@
-.url-list--item {
+.url-list {
+  &--shortlink {
+    font-size:1.3rem;
+  }
+
+  &--item {
   margin:10px 0;
   font-size:1.9rem;
   border: 2px solid darken(#eee, 25%);
   border-radius: 5px;
   padding:10px;
   background: #eee;
+  word-wrap: break-word;
+  }
 }
 
 .links-list--header {
