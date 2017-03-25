@@ -6,17 +6,20 @@ export default class AddLink extends Component {
     super(props);
 
     this.state = {
-      url: ""
+      url: "",
+      err: ""
     };
   }
   onSubmit(e) {
     e.preventDefault();
-    //const url = this.refs.url.value.trim();
     const { url } = this.state;
     if (url) {
       // Links.insert({ url, userId: Meteor.userId() });
       // Removed old insert
       Meteor.call('links.insert', url, (err, res) => {
+        if (err) {
+          this.setState({ err: err.reason });
+        }
         if (!err) {
           this.setState({ url: '' });
         }
@@ -26,13 +29,23 @@ export default class AddLink extends Component {
 
   onChange(e) {
     this.setState({
-      url: e.target.value
+      url: e.target.value,
+      err: ""
     });
+  }
+
+  renderError() {
+    if (this.state.err !== "") {
+      return <div className="alert alert-warning">{ this.state.err }</div>
+    } else {
+      return
+    }
   }
   render() {
     return(
       <div>
         <h2>Add Link</h2>
+        {this.renderError()}
         <form className="form-group">
           <input 
           className="form-control" 

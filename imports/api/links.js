@@ -19,7 +19,7 @@ Meteor.methods({
     new SimpleSchema({
       url: {
         type: String,
-        label: "Your garbage",
+        label: "Your entry",
         regEx: SimpleSchema.RegEx.Url
       }
     }).validate({ url });
@@ -32,7 +32,6 @@ Meteor.methods({
     })
   },
   'links.setVisibility'(_id, visible) {
-    console.log("id from api links", _id);
     if (!this.userId) {
       throw new Meteor.Error('not authorized');
     }
