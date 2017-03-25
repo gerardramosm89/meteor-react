@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Player from './Player';
 import FlipMove from 'react-flip-move';
 import { Players, calculatePlayerPositions } from '../api/players';
-
+import { Meteor } from 'meteor/meteor';
 export default class PlayerList extends Component {
   constructor(props) {
     super(props);
@@ -12,6 +12,8 @@ export default class PlayerList extends Component {
   }
   componentDidMount() {
     this.playersTracker = Tracker.autorun(() => {
+      console.log("attempting subscription from score");
+      Meteor.subscribe('players');
       let players = Players.find({}, { sort: { score: -1 }}).fetch();
       let positionedPlayers = calculatePlayerPositions(players);
       console.log("positionedplayers from PlayerList", positionedPlayers.length);

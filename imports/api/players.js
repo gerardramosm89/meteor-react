@@ -1,7 +1,13 @@
 import { Mongo } from 'meteor/mongo';
 import numeral from 'numeral';
-
 export const Players = new Mongo.Collection('players');
+
+if (Meteor.isServer) {
+  console.log("publishing players");
+  Meteor.publish('players', function () {
+    return Players.find({});
+  });
+}
 
 export const calculatePlayerPositions = (players) => {
   let rank = 1;
