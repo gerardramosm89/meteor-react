@@ -3,12 +3,21 @@ import numeral from 'numeral';
 export const Players = new Mongo.Collection('players');
 
 if (Meteor.isServer) {
-  console.log("publishing players");
   Meteor.publish('players', function () {
     return Players.find({});
   });
 }
 
+Meteor.methods({
+  'players.insert'(name, score) {
+    Players.insert({
+      // _id: shortid.generate(),
+      name,
+      score,
+      userId: this.userId
+    })
+  }
+});
 export const calculatePlayerPositions = (players) => {
   let rank = 1;
 
