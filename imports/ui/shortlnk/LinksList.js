@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
 import { Links } from '../../api/links';
 import { Session } from 'meteor/session';
 import LinksListItem from './LinksListItem';
-export default class LinksList extends React.Component {
+
+
+export default class LinksList extends Component {
   constructor(props) {
     super(props);
     this.state = {
