@@ -48,6 +48,12 @@ export default class LinksListItem extends React.Component {
           {props.url}
         </div>
         <div>
+          Last visited at: {props.lastVisitedAt}
+        </div>
+        <div>
+          Visited count: {props.visitedCount}
+        </div>
+        <div>
           <p>VisibilitY: {props.visible.toString()}</p>
           <p className="url-list--shortlink">Short Link is: {props.shortUrl}</p>
           <button className="btn btn-default" ref="copy" data-clipboard-text={props.shortUrl}>{this.renderCopied()}</button>
