@@ -4,7 +4,6 @@
   padding: 0;
   color: black;
 }
-
 div {
   box-sizing: border-box;
 }
@@ -34,7 +33,7 @@ h1 {
 .btn--delete {
   float: right;
 }
-
+@import './components/variables';
 @import './components/title-bar';
 @import './components/wrapper';
 @import './components/item';
