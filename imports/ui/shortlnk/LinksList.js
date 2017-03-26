@@ -4,7 +4,7 @@ import { Tracker } from 'meteor/tracker';
 import { Links } from '../../api/links';
 import { Session } from 'meteor/session';
 import LinksListItem from './LinksListItem';
-
+import FlipMove from 'react-flip-move';
 
 export default class LinksList extends Component {
   constructor(props) {
@@ -50,7 +50,9 @@ export default class LinksList extends Component {
           <input type="checkbox" checked={!this.state.showVisible} onChange={this.checked}/>
           show hidden links
           </label>
-          {this.renderLinksListItems()}
+          <FlipMove maintainContainerHeight={true}>
+            {this.renderLinksListItems()}
+          </FlipMove>
         </div>
       </div>
     );
