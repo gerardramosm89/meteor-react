@@ -6,16 +6,51 @@
   &--item {
   margin:10px 0;
   font-size:1.9rem;
-  border: 2px solid darken(#eee, 25%);
+  border: 2px solid darken($bone, 25%);
   border-radius: 5px;
   padding:10px;
-  background: #eee;
+  background: $bone;
   word-wrap: break-word;
   }
 }
 
+.box {
+  background: $coal;
+}
+
+.addlink {
+  font-size: 6rem;
+  font-weight:600;
+  color: white;
+  padding:50px;
+  margin: 0;
+  &--btn {
+    margin-bottom:50px !important;
+  }
+}
+
+.boxmodal {
+  width: 500px;
+  margin:auto;
+  margin-top:40vh;
+  background: $bone;
+  border-radius:7px;
+
+  &--inner {
+    padding:20px;
+  }
+
+  &--overlay {
+    position: fixed;
+    top:0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.81);
+  }
+}
+
 .links-list--header {
-  text-align:center;
   margin:20px 0;
   font-size:4.5rem;
   font-weight:600;

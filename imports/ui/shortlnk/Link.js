@@ -11,8 +11,8 @@ export default class Link extends React.Component {
     return (
       <div>
         <PrivateHeader />
-        <div className="col-xs-6 col-xs-offset-3">          
-          <AddLink />
+        <AddLink />
+        <div className="col-xs-8 col-xs-offset-2">
           <LinksList />
         </div>
       </div>

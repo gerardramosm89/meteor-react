@@ -44,27 +44,30 @@ export default class AddLink extends Component {
     }
   }
 
-  handleModalClose() {
+  handleModalClose(e) {
+    e.preventDefault();
     this.setState({ modalIsOpen: false, url: '', err: '' });
   }
   render() {
     return(
       <div>
-        <div className="text-center">
-          <h1>Add Link</h1>
+        <div className="box text-center">
+          <h1 className="addlink">Add Link</h1>
           <button
-            className="btn btn-primary" 
+            className="btn btn-primary addlink--btn" 
             onClick={() => this.setState({ modalIsOpen: true })
-          }>Add Link</button>
+          }>+ Add Link</button>
         </div>
         <Modal
           isOpen={this.state.modalIsOpen}
           contentLabel="Adding Link"
           onAfterOpen={() => this.refs.url.focus()}
           onRequestClose={this.handleModalClose.bind(this)}
+          className="boxmodal"
+          overlayClassName="boxmodal--overlay"
         >
-          {this.renderError()}
-          <form className="form-group">
+          <form className="form-group boxmodal--inner">
+            {this.renderError()}
             <input 
             className="form-control" 
             type="text" 
@@ -73,10 +76,10 @@ export default class AddLink extends Component {
             value={this.state.url}
             onChange={this.onChange.bind(this)} />
             <button className="btn btn-success" onClick={this.onSubmit.bind(this)}>Add</button>
+            <button 
+            className="btn btn-primary"
+            onClick={this.handleModalClose.bind(this)}>Cancel</button>
           </form>
-          <button 
-          className="btn btn-primary"
-          onClick={this.handleModalClose.bind(this)}>Cancel</button>
         </Modal>
       </div>
     );
