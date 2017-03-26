@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
+import Modal from 'react-modal';
 
 export default class AddLink extends Component {
   constructor(props) {
@@ -7,7 +8,8 @@ export default class AddLink extends Component {
 
     this.state = {
       url: "",
-      err: ""
+      err: "",
+      modalIsOpen: false
     };
   }
   onSubmit(e) {
@@ -21,7 +23,7 @@ export default class AddLink extends Component {
           this.setState({ err: err.reason });
         }
         if (!err) {
-          this.setState({ url: '' });
+          this.setState({ url: '', modalIsOpen: false });
         }
       });
     }
@@ -36,26 +38,46 @@ export default class AddLink extends Component {
 
   renderError() {
     if (this.state.err !== "") {
-      return <div className="alert alert-warning">{ this.state.err }</div>
+      return <div className="alert alert-danger">{ this.state.err }</div>
     } else {
       return
     }
   }
+
+  handleModalClose() {
+    this.setState({ modalIsOpen: false, url: '', err: '' });
+  }
   render() {
     return(
       <div>
-        <h2>Add Link</h2>
-        {this.renderError()}
-        <form className="form-group">
-          <input 
-          className="form-control" 
-          type="text" 
-          ref="url" 
-          placeholder="URL" 
-          value={this.state.url}
-          onChange={this.onChange.bind(this)} />
-          <button className="btn btn-success" onClick={this.onSubmit.bind(this)}>Add</button>
-        </form>
+        <div className="text-center">
+          <h1>Add Link</h1>
+          <button
+            className="btn btn-primary" 
+            onClick={() => this.setState({ modalIsOpen: true })
+          }>Add Link</button>
+        </div>
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          contentLabel="Adding Link"
+          onAfterOpen={() => this.refs.url.focus()}
+          onRequestClose={this.handleModalClose.bind(this)}
+        >
+          {this.renderError()}
+          <form className="form-group">
+            <input 
+            className="form-control" 
+            type="text" 
+            ref="url" 
+            placeholder="URL" 
+            value={this.state.url}
+            onChange={this.onChange.bind(this)} />
+            <button className="btn btn-success" onClick={this.onSubmit.bind(this)}>Add</button>
+          </form>
+          <button 
+          className="btn btn-primary"
+          onClick={this.handleModalClose.bind(this)}>Cancel</button>
+        </Modal>
       </div>
     );
   }
