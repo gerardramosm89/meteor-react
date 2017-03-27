@@ -18,9 +18,17 @@ if (Meteor.isClient) {
     it('should return Protected Resources header', function() {
       const title = 'Protected Resources';
       const wrapper = mount( <PrivateHeader /> );
-      
+
       expect(wrapper.find('h1').text()).toBe(title);
     });
+
+    it('should call the function', function() {
+      const spy = expect.createSpy();
+      // spy(3,4,1);
+      expect(spy).toNotHaveBeenCalled();
+    });
+
+
 
   });
 }
