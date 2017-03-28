@@ -15,8 +15,8 @@ if (Meteor.isClient) {
       expect(buttonText).toBe('Logout');
     });
 
-    it('should return Protected Resources header', function() {
-      const title = 'Protected Resources';
+    it('should return "Dashboard" header', function() {
+      const title = 'Dashboard';
       const wrapper = mount( <PrivateHeader /> );
 
       expect(wrapper.find('h1').text()).toBe(title);

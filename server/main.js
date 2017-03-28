@@ -3,6 +3,7 @@ import { WebApp } from 'meteor/webapp';
 import { Players, calculatePlayerPositions } from './../imports/api/players';
 import { Links } from '../imports/api/links';
 import '../imports/api/users';
+import '../imports/api/notes';
 import '../imports/startup/simple-schema-configuration';
 import moment from 'moment';
 

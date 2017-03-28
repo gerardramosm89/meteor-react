@@ -12,6 +12,7 @@ if (Meteor.isServer) {
 }
 Meteor.methods({
   'notes.insert'() {
+    console.log('notes.insert was called');
     if (!this.userId) {
       throw new Meteor.Error('Currently not authorized');
     }
