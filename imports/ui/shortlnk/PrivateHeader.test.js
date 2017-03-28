@@ -24,7 +24,7 @@ if (Meteor.isClient) {
 
     it('should call the function', function() {
       const spy = expect.createSpy();
-      // spy(3,4,1);
+      // spy(3,4,1);5
       expect(spy).toNotHaveBeenCalled();
     });
 
