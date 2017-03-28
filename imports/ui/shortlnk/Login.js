@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { Meteor } from 'meteor/meteor';
+import { createContainer } from 'meteor/react-meteor-data';
 
-export default class Login extends React.Component {
+export class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,7 +15,7 @@ export default class Login extends React.Component {
     let email = this.refs.email.value.trim();
     let password = this.refs.password.value.trim();
 
-    Meteor.loginWithPassword({ email }, password, (err) => {
+    this.props.loginWithPassword({ email }, password, (err) => {
       if (err) {
         this.setState({ error: err.reason });
       } else {
@@ -27,7 +28,7 @@ export default class Login extends React.Component {
       <div>
         <div className="col-xs-6 col-xs-offset-3">
           <h1 className="text-center">Login</h1>
-        {this.state.error ? <div className="alert alert-danger">{this.state.error}</div> : undefined}          
+        {this.state.error ? <div className="alert alert-danger" id="error">{this.state.error}</div> : undefined}          
           <form onSubmit={this.onSubmit.bind(this)} noValidate>
             <div className="form-group">
               <input className="form-control" ref="email" type="text" name="email" placeholder="Email" />
@@ -43,3 +44,9 @@ export default class Login extends React.Component {
     );
   }
 }
+
+export default createContainer(() => {
+  return {
+    loginWithPassword: Meteor.loginWithPassword
+  };
+}, Login);

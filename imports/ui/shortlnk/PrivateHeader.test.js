@@ -3,7 +3,7 @@ import React from 'react';
 import expect from 'expect';
 import { mount } from 'enzyme';
 
-import PrivateHeader from './PrivateHeader';
+import { PrivateHeader } from './PrivateHeader';
 
 if (Meteor.isClient) {
   describe('PrivateHeader', function() {
@@ -28,7 +28,15 @@ if (Meteor.isClient) {
       expect(spy).toNotHaveBeenCalled();
     });
 
+    it('should call onLogout on click', function() {
+      const spy = expect.createSpy();
 
+      const wrapper = mount( <PrivateHeader onLogout={spy} /> );
+
+      wrapper.find('button').simulate('click');
+
+      expect(spy).toHaveBeenCalled();
+    });
 
   });
 }
