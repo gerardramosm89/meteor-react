@@ -3,12 +3,13 @@ import moment from 'moment';
 import { Session } from 'meteor/session';
 import { createContainer } from 'meteor/react-meteor-data';
 
-class NoteListItem extends Component {
+export class NoteListItem extends Component {
   constructor(props){
     super(props);
   }
 
   handleClick() {
+    console.log("handle click was called");
     this.props.Session.set('selectedNoteId', this.props.note._id);
   }
 
