@@ -10,6 +10,7 @@ import Login from '../ui/shortlnk/Login';
 import { Players, calculatePlayerPositions } from './../api/players';
 import Link from '../ui/shortlnk/Link';
 import Dashboard from '../ui/shortlnk/Dashboard';
+import { Session } from 'meteor/session';
 
 const unauthenticatedPages = ['/', '/signup', '/login'];
 const authenticatedPages = ['/links'];
@@ -23,6 +24,16 @@ const onEnterPrivatePage = () => {
     browserHistory.replace('/login');
   }
 };
+
+const onEnterNotePage = (nextState) => {
+  if (!Meteor.userId()) {
+    browserHistory.replace('/login');
+  } else {
+    console.log(nextState);
+    Session.set('selectedNoteId', nextState.params.id);
+  }
+};
+
 export const onAuthChange = (isAuthenticated) => {
   const pathname = browserHistory.getCurrentLocation().pathname;
   const isUnauthenticatedPage = unauthenticatedPages.includes(pathname);
@@ -40,7 +51,7 @@ export const routes = (
   <Router history={browserHistory}>
     <Route path="/" component={Login} />          
     <Route path="/dashboard" component={Dashboard} onEnter={onEnterPrivatePage}/>    
-    <Route path="/dashboard/:id" component={Dashboard} onEnter={onEnterPrivatePage}/>    
+    <Route path="/dashboard/:id" component={Dashboard} onEnter={onEnterNotePage}/>    
     <Route path="/signup" component={Signup} onEnter={onEnterPublicPage}/>
     <Route path="/login" component={Login} onEnter={onEnterPublicPage}/>
     <Route path="/links" component={Link} onEnter={onEnterPrivatePage}/>         
