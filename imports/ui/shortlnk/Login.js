@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
-
+import { browserHistory } from 'react-router';
 export class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -20,6 +20,7 @@ export class Login extends React.Component {
         this.setState({ error: 'Login failed' });
       } else {
         this.setState({ error: '' });
+        browserHistory.push('/dashboard');
       }
     });
   }

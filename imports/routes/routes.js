@@ -9,12 +9,13 @@ import NotFound from '../ui/shortlnk/Notfound';
 import Login from '../ui/shortlnk/Login';
 import { Players, calculatePlayerPositions } from './../api/players';
 import Link from '../ui/shortlnk/Link';
+import Dashboard from '../ui/shortlnk/Dashboard';
 
 const unauthenticatedPages = ['/', '/signup', '/login'];
 const authenticatedPages = ['/links'];
 const onEnterPublicPage = () => {
   if (Meteor.userId()) {
-    browserHistory.replace('/links');
+    //browserHistory.replace('/links');
   }
 };
 const onEnterPrivatePage = () => {
@@ -31,13 +32,14 @@ export const onAuthChange = (isAuthenticated) => {
     console.log("log in");
     browserHistory.replace('/login');
   } else if (isUnauthenticatedPage && isAuthenticated) {
-    browserHistory.replace('/links');
+    //browserHistory.replace('/links');
   }
 };
 
 export const routes = (
   <Router history={browserHistory}>
     <Route path="/" component={Login} />          
+    <Route path="/dashboard" component={Dashboard} onEnter={onEnterPrivatePage}/>    
     <Route path="/signup" component={Signup} onEnter={onEnterPublicPage}/>
     <Route path="/login" component={Login} onEnter={onEnterPublicPage}/>
     <Route path="/links" component={Link} onEnter={onEnterPrivatePage}/>         
