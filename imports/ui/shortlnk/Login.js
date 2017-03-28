@@ -17,7 +17,7 @@ export class Login extends React.Component {
 
     this.props.loginWithPassword({ email }, password, (err) => {
       if (err) {
-        this.setState({ error: err.reason });
+        this.setState({ error: 'Login failed' });
       } else {
         this.setState({ error: '' });
       }
