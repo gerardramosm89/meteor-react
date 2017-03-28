@@ -17,6 +17,10 @@ if (Meteor.isClient) {
       expect(wrapper.find('p').text()).toBe('3/28/17');
     });
 
+    it('should set default title if no title set', function() {
+      const wrapper = mount( <NoteListItem note={{}} /> );
+      expect(wrapper.find('h3').text()).toBe('Note needs title');
+    });
 
   });
 }
