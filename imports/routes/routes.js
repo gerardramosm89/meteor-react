@@ -55,15 +55,28 @@ export const onAuthChange = (isAuthenticated) => {
   }
 };
 
+export const globalOnChange = (prevState, nextState) => {
+  console.log('globalOnChange');
+  globalOnEnter(nextState);
+}
+
+export const globalOnEnter = (nextState) => {
+  console.log('globalonEnter was called');
+  const lastRoute = nextState.routes[nextState.routes.length - 1];
+  Session.set('currentPagePrivacy', lastRoute.privacy);
+
+}
 export const routes = (
   <Router history={browserHistory}>
-    <Route path="/" component={Login} />          
-    <Route path="/dashboard" component={Dashboard} onEnter={onEnterPrivatePage}/>    
-    <Route path="/dashboard/:id" component={Dashboard} onEnter={onEnterNotePage}/>    
-    <Route path="/signup" component={Signup} onEnter={onEnterPublicPage}/>
-    <Route path="/login" component={Login} onEnter={onEnterPublicPage}/>
-    <Route path="/links" component={Link} onEnter={onEnterPrivatePage}/>         
-    <Route path="/scorekeep" component={TitleBar} />
-    <Route path="*" component={NotFound} />          
+    <Route onEnter={globalOnEnter} onChange={globalOnChange}>
+      <Route path="/" component={Login} privacy="unauth"/>          
+      <Route path="/dashboard" component={Dashboard} privacy="auth" onEnter={onEnterPrivatePage}/>    
+      <Route path="/dashboard/:id" component={Dashboard} privacy="auth" onEnter={onEnterNotePage}/>    
+      <Route path="/signup" component={Signup} privacy="unauth" onEnter={onEnterPublicPage}/>
+      <Route path="/login" component={Login} privacy="unauth" onEnter={onEnterPublicPage}/>
+      <Route path="/links" component={Link} onEnter={onEnterPrivatePage}/>         
+      <Route path="/scorekeep" component={TitleBar} />
+      <Route path="*" component={NotFound} />
+    </Route>
   </Router>
 );
