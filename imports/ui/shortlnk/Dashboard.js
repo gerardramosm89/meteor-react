@@ -1,7 +1,7 @@
 import React from 'react';
 import PrivateHeader from './PrivateHeader';
 import NoteList from '../notes-app/NoteList';
-
+import Editor from '../notes-app/Editor';
 
 export default class Dashboard extends React.Component {
   render() {
@@ -10,7 +10,17 @@ export default class Dashboard extends React.Component {
         <PrivateHeader />
 
         <NoteList />
+
+        <Editor />
       </div>
     );
   }
 }
+
+/*export default () => {
+  return (
+    <div>
+      <Editor />
+    </div>
+  );
+}*/

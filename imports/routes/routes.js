@@ -1,19 +1,27 @@
+// Dependencies
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
-import TitleBar from '../ui/TitleBar';
 import { Router, Route, browserHistory } from 'react-router';
+import { Session } from 'meteor/session';
+
+// UI
+import TitleBar from '../ui/TitleBar';
 import Signup from '../ui/shortlnk/Signup';
 import NotFound from '../ui/shortlnk/Notfound';
 import Login from '../ui/shortlnk/Login';
-import { Players, calculatePlayerPositions } from './../api/players';
 import Link from '../ui/shortlnk/Link';
 import Dashboard from '../ui/shortlnk/Dashboard';
-import { Session } from 'meteor/session';
 
+// Api Calls
+import { Players, calculatePlayerPositions } from './../api/players';
+
+// Variables
 const unauthenticatedPages = ['/', '/signup', '/login'];
 const authenticatedPages = ['/links'];
+
+// Auth Guards
 const onEnterPublicPage = () => {
   if (Meteor.userId()) {
     //browserHistory.replace('/links');
