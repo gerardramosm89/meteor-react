@@ -17,10 +17,6 @@ import Dashboard from '../ui/shortlnk/Dashboard';
 // Api Calls
 import { Players, calculatePlayerPositions } from './../api/players';
 
-// Variables
-const unauthenticatedPages = ['/', '/signup', '/login'];
-const authenticatedPages = ['/links'];
-
 // Auth Guards
 const onEnterPublicPage = () => {
   if (Meteor.userId()) {
@@ -42,10 +38,9 @@ const onEnterNotePage = (nextState) => {
   }
 };
 
-export const onAuthChange = (isAuthenticated) => {
-  const pathname = browserHistory.getCurrentLocation().pathname;
-  const isUnauthenticatedPage = unauthenticatedPages.includes(pathname);
-  const isAuthenticatedPage = authenticatedPages.includes(pathname);
+export const onAuthChange = (isAuthenticated, currentPagePrivacy) => {
+  const isUnauthenticatedPage = currentPagePrivacy === 'unauth';
+  const isAuthenticatedPage = currentPagePrivacy === 'auth';
 
   if (isAuthenticatedPage && !isAuthenticated) {
     console.log("log in");
@@ -66,12 +61,20 @@ export const globalOnEnter = (nextState) => {
   Session.set('currentPagePrivacy', lastRoute.privacy);
 
 }
+
+const onLeaveNotePage = () => {
+  Session.set('selectedNoteId', undefined);
+};
 export const routes = (
   <Router history={browserHistory}>
     <Route onEnter={globalOnEnter} onChange={globalOnChange}>
       <Route path="/" component={Login} privacy="unauth"/>          
       <Route path="/dashboard" component={Dashboard} privacy="auth" onEnter={onEnterPrivatePage}/>    
-      <Route path="/dashboard/:id" component={Dashboard} privacy="auth" onEnter={onEnterNotePage}/>    
+      <Route path="/dashboard/:id" 
+      component={Dashboard} 
+      privacy="auth" 
+      onEnter={onEnterNotePage}
+      onLeave={onLeaveNotePage}/>    
       <Route path="/signup" component={Signup} privacy="unauth" onEnter={onEnterPublicPage}/>
       <Route path="/login" component={Login} privacy="unauth" onEnter={onEnterPublicPage}/>
       <Route path="/links" component={Link} onEnter={onEnterPrivatePage}/>         
