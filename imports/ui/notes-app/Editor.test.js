@@ -7,7 +7,6 @@ import { Editor } from './Editor';
 import { notes } from '../../fixtures/fixtures';
 
 if (Meteor.isClient) {
-  console.log("From the editor comp");
   describe('Editor', function() {
     let browserHistory;
     let call;
@@ -18,6 +17,7 @@ if (Meteor.isClient) {
       browserHistory = {
         push: expect.createSpy()
       }
+
     });
 
     it('should render pick note message', function() {
