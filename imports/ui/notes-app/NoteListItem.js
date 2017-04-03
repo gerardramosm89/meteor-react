@@ -9,9 +9,7 @@ export class NoteListItem extends Component {
   }
 
   handleClick() {
-    console.log("handle click was called");
     this.props.Session.set('selectedNoteId', this.props.note._id);
-    console.log("this.props is: ", this.props);
   }
 
   render() {
