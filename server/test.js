@@ -10,12 +10,12 @@ console.log(arr);
 function currentSum(arr) {
   let curSum = 0;
   let maxSum = -99999;
-  for (let n = 0; n < 4; n++) {
-    for (let i = 0; i < 4; i++) {
+  for (let n = 0; n < 4; n++) { //Stepping down a row
+    for (let i = 0; i < 4; i++) { //Incrementing column towards the right
       middleIndex = i + 1;
-      curSum = arr[n][i] + arr[n][i + 1] + arr[n][i + 2];
-      curSum = curSum + arr[n + 2][i] + arr[n + 2][i + 1] + arr[n + 2][i + 2] 
-      + arr[n + 1][i + 1];
+      curSum = arr[n][i] + arr[n][i + 1] + arr[n][i + 2]; // Let's sum the top of the hourglass
+      curSum = curSum + arr[n + 2][i] + arr[n + 2][i + 1] + arr[n + 2][i + 2] // Sum bottom of the hourglass
+      + arr[n + 1][i + 1]; //Sum the middle of the hourglass
       // console.log("i is: ", i);
       // console.log("arr[1][middleIndex] is: ", arr[1][middleIndex]);
       console.log(curSum);
