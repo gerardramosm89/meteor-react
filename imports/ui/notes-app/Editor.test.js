@@ -40,5 +40,10 @@ if (Meteor.isClient) {
       expect(browserHistory.push).toHaveBeenCalledWith('/dashboard');
       expect(call).toHaveBeenCalledWith('notes.remove', notes[0]._id);
     })
+
+    it('should update the note body on textarea change', function() {
+      
+    });
+
   });
 }
