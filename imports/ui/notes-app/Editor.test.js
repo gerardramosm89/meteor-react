@@ -32,7 +32,7 @@ if (Meteor.isClient) {
 
     it('should remove note', function() {
       const wrapper = mount( <Editor browserHistory={browserHistory} call={call} 
-      selectedNoteId={notes[0]._id} 
+      selectedNoteId={notes[0]._id}
       note = { notes[0] } /> );
       
       wrapper.find('button').simulate('click');
@@ -42,7 +42,19 @@ if (Meteor.isClient) {
     })
 
     it('should update the note body on textarea change', function() {
-      
+      const newBody = 'Thisis my new body text';
+      const wrapper = mount( <Editor browserHistory={browserHistory} call={call} 
+      selectedNoteId={notes[0]._id}
+      note = { notes[0] } /> );
+
+      wrapper.find('textarea').simulate('change', {
+        target: {
+          value: newBody
+        }
+      });
+
+      expect(wrapper.state('body')).toBe(newBody);
+      expect(call).toHaveBeenCalled('notes.update', notes[0]._id, {body: newBody });
     });
 
   });
