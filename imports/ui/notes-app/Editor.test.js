@@ -57,5 +57,34 @@ if (Meteor.isClient) {
       expect(call).toHaveBeenCalled('notes.update', notes[0]._id, {body: newBody });
     });
 
+
+    it('should update the note title on textarea change', function() {
+      const newTitle = 'This is my new title text';
+      const wrapper = mount( <Editor browserHistory={browserHistory} call={call} 
+      selectedNoteId={notes[0]._id}
+      note = { notes[0] } /> );
+
+      wrapper.find('input').simulate('change', {
+        target: {
+          value: newTitle
+        }
+      });
+
+      expect(wrapper.state('title')).toBe(newTitle);
+      expect(call).toHaveBeenCalled('notes.update', notes[0]._id, {title: newTitle });
+    });
+
+    it('should set state for new note', function() {
+      const wrapper = mount( <Editor browserHistory={browserHistory} call={call} /> );
+      
+      wrapper.setProps({
+        selectedNoteId: notes[0]._id,
+        note: notes[0]
+      });
+
+      expect(wrapper.state('title')).toBe(notes[0].title);
+      expect(wrapper.state('body')).toBe(notes[0].body);
+    });
+
   });
 }
