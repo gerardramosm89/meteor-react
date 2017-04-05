@@ -27,7 +27,7 @@ export class Login extends React.Component {
   render() {
     return (
       <div>
-        <div className="col-xs-6 col-xs-offset-3">
+        <div className="login__box col-xs-6 col-xs-offset-3">
           <h1 className="text-center">Login</h1>
         {this.state.error ? <div className="alert alert-danger" id="error">{this.state.error}</div> : undefined}          
           <form onSubmit={this.onSubmit.bind(this)} noValidate>

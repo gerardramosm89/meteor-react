@@ -33,6 +33,13 @@ h1 {
 .btn--delete {
   float: right;
 }
+
+.login__box {
+  margin-top: 50vh;
+  transform: translatey(-60%);
+}
+
+
 @import './components/variables';
 @import './components/title-bar';
 @import './components/wrapper';
