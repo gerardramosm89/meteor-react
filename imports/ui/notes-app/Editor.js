@@ -49,7 +49,7 @@ export class Editor extends Component {
     if (this.props.note) {
       return (
         <div>
-          <div className="form-group col-xs-6">
+          <div>
             <h2>Enter Note Info:</h2>
             <input className="form-control"
             placeholder="Enter title here" 

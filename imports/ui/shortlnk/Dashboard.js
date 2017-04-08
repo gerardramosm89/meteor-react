@@ -8,10 +8,12 @@ export default class Dashboard extends React.Component {
     return (
       <div>
         <PrivateHeader />
-
-        <NoteList />
-
-        <Editor />
+        <div className="col-xs-3 col-xs-offset-1">
+          <NoteList />
+        </div>
+        <div className="col-xs-7">
+          <Editor />
+        </div>
       </div>
     );
   }
